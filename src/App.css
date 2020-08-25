@@ -2,22 +2,8 @@
   text-align: center;
 }
 
-td {
-  border: thin solid silver;
-  width: 20px;
-  height: 30px;
-  cursor: pointer;
-}
-
-.full {
-  background-color: blue;
-}
-
-.deleteRow {
-  background-color: red;
-  border-left: thick solid white;
-}
-.insertRow {
-  background-color: green;
-  border-left: thick solid white;
+@media print {
+  .noPrint {
+    display: none;
+  }
 }
