@@ -82,6 +82,7 @@ function App() {
           ))}
         </tbody>
       </table>
+      <button onClick={addRow}>Add Row</button>
     </div>
   );
 }
