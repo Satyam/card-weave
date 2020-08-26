@@ -1,7 +1,9 @@
-polyline {
-  fill: silver;
-  stroke: none;
+path {
+  fill: none;
 }
-.full {
-  fill: blue;
+.orange {
+  stroke: orange;
+}
+.purple {
+  stroke: purple;
 }
