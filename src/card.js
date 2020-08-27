@@ -1,7 +1,8 @@
 export const WIDTH = 17;
 const LS_KEY = 'card-weave';
+
 export function newRow() {
-  return [true].concat(new Array(WIDTH - 2).fill(null), true);
+  return new Array(WIDTH).fill(null);
 }
 
 export function saveCard(card) {

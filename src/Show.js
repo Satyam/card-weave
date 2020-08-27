@@ -27,7 +27,7 @@ function Show({ card }) {
           return (
             <Carta
               key={col}
-              dir={previous[col] ? UP : DOWN}
+              dir={previous[col] ? DOWN : UP}
               x={col}
               cell={cell}
             />
