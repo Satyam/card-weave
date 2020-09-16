@@ -6,6 +6,7 @@ const INTERVAL = 200;
 function Teatro() {
   const [step, setStep] = useState(0);
   const [up, setUp] = useState(true);
+  const [go, setGo] = useState(true);
 
   const doStep = (up, step) => {
     // console.log('a', step, up);
@@ -23,9 +24,14 @@ function Teatro() {
   };
 
   useEffect(() => {
-    const t = setTimeout(() => doStep(up, step), INTERVAL);
-    return () => clearTimeout(t);
-  }, [up, step]);
+    if (go) {
+      const t = setTimeout(
+        () => doStep(up, step),
+        step % (STEPS / 4) ? INTERVAL : INTERVAL * 5
+      );
+      return () => clearTimeout(t);
+    }
+  }, [up, step, go]);
 
   // console.log('b', step, up);
 
@@ -38,7 +44,19 @@ function Teatro() {
     // console.log('c', c, i, step);
     return Math.round(args[i] + (args[i + 1] - args[i]) * c);
   };
-  return <RO step={step} p={p} />;
+
+  const s = (...args) => {
+    const l = args.length;
+    const i = Math.min(l - 1, Math.floor((step * l) / STEPS));
+    return args[i];
+  };
+  return (
+    <>
+      <RO step={step} p={p} STEPS={STEPS} s={s} />
+      <button onClick={() => setGo((g) => !g)}>{go ? 'pause' : 'go'}</button>
+    </>
+  );
+
   // const q = `${p(60, 60, 40)},${p(40, 50, 60)}`;
   // const q1 = `${p(60, 46, 40)},${p(54, 50, 46)}`;
   // const l = `${p(60, 80, 40)},${p(20, 50, 80)}`;
