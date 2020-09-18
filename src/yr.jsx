@@ -5,7 +5,7 @@ const YR = ({ step, p, STEPS, s }) => {
   const backColor = 'white';
   return (
     <svg
-      viewBox={`-10 -10 1000 1200`}
+      viewBox={`-100 -100 800 1200`}
       xmlns="http://www.w3.org/2000000/svg"
       width="25%"
     >

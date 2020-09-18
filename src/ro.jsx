@@ -5,7 +5,7 @@ const RO = ({ step, p, STEPS, s }) => {
 
   return (
     <svg
-      viewBox={`-10 -10 1000 1200`}
+      viewBox={`-100 -100 800 1200`}
       xmlns="http://www.w3.org/2000000/svg"
       width="25%"
     >
@@ -38,9 +38,9 @@ const RO = ({ step, p, STEPS, s }) => {
         fill={fill}
       />
       {/* <circle cx={300} cy={300} r={10} fill="red" /> */}
-      <text x={700} y={100} style={{ fontSize: '100px' }}>
+      {/* <text x={700} y={100} style={{ fontSize: '100px' }}>
         {step}
-      </text>
+      </text> */}
     </svg>
   );
 };
