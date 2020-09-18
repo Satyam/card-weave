@@ -43,7 +43,7 @@ const RO = ({ step, p, STEPS, s }) => {
         />
         {/* <circle cx={300} cy={300} r={10} fill="red" /> */}
         <text x={700} y={100} style={{ fontSize: '100px' }}>
-          {step},{p(0, 350, 400, 400)}
+          {step}
         </text>
       </svg>
     </>
