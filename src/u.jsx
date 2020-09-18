@@ -9,13 +9,20 @@ const U = ({ backColor = 'white' }) => {
     >
       {' '}
       <g id="U">
-        <circle cx={300} cy={300} r={300} />
-        <rect x={0} y={300} width={600} height={300} fill={backColor} />
-        <circle cx={300} cy={300} r={100} fill={backColor} />
-        <rect x={0} y={300} width={200} height={200} />
-        <rect x={400} y={300} width={200} height={200} />
-        <circle cx={100} cy={500} r={100} />
-        <circle cx={500} cy={500} r={100} />
+        <path
+          d={`
+          M 0,300 
+          A 300,300 180 0 1 600,300 
+          L 600,500 
+          A 100,100 180 0 1 400,500 
+          L 400,300
+          A 100,100 180 0 0 200,300
+          L 200,500
+          A 100,100 180 0 1 0,500
+          Z
+        `}
+        />
+        {/* */}
       </g>
     </svg>
   );

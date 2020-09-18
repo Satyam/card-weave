@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import RO from './ro';
 
-const STEPS = 15;
+import U from './u';
+import RO from './ro';
+import OX from './ox';
+import XY from './xy';
+import YR from './yr';
+
+const STEPS = 20;
 const INTERVAL = 200;
 function Teatro() {
   const [step, setStep] = useState(0);
   const [up, setUp] = useState(true);
   const [go, setGo] = useState(true);
-  const [pausas, setPausas] = useState(false);
+  const [pausas, setPausas] = useState(true);
 
   const doStep = (up, step) => {
     // console.log('a', step, up);
@@ -28,7 +33,7 @@ function Teatro() {
     if (go) {
       const t = setTimeout(
         () => doStep(up, step),
-        pausas ? (step % (STEPS / 3) ? INTERVAL : INTERVAL * 5) : INTERVAL
+        pausas ? (step % (STEPS / 4) ? INTERVAL : INTERVAL * 5) : INTERVAL
       );
       return () => clearTimeout(t);
     }
@@ -50,7 +55,12 @@ function Teatro() {
   };
   return (
     <>
+      <U />
+
       <RO step={step} p={p} STEPS={STEPS} s={s} />
+      <OX step={step} p={p} STEPS={STEPS} s={s} />
+      <XY step={step} p={p} STEPS={STEPS} s={s} />
+      <YR step={step} p={p} STEPS={STEPS} s={s} />
       <button onClick={() => setGo((g) => !g)}>{go ? 'pause' : 'go'}</button>
       <button onClick={() => setPausas((g) => !g)}>
         {pausas ? 'continuo' : 'con pausas'}
