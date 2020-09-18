@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import RO from './ro';
 
-const STEPS = 20;
-const INTERVAL = 200;
+const STEPS = 15;
+const INTERVAL = 300;
 function Teatro() {
   const [step, setStep] = useState(0);
   const [up, setUp] = useState(true);
   const [go, setGo] = useState(true);
+  const [pausas, setPausas] = useState(false);
 
   const doStep = (up, step) => {
     // console.log('a', step, up);
@@ -27,21 +28,22 @@ function Teatro() {
     if (go) {
       const t = setTimeout(
         () => doStep(up, step),
-        step % (STEPS / 4) ? INTERVAL : INTERVAL * 5
+        pausas ? (step % (STEPS / 3) ? INTERVAL : INTERVAL * 5) : INTERVAL
       );
       return () => clearTimeout(t);
     }
-  }, [up, step, go]);
+  }, [up, step, go, pausas]);
 
   // console.log('b', step, up);
 
   // const c = step / STEPS;
 
   const p = (...args) => {
-    const f = (step * (args.length - 1)) / STEPS;
-    const i = Math.min(args.length - 2, Math.floor(f));
+    const l = args.length;
+    const f = (step * (l - 1)) / STEPS;
+    const i = Math.min(l - 2, Math.floor(f));
     const c = f - i;
-    // console.log('c', c, i, step);
+    console.log(step, { l, f, i, c });
     return Math.round(args[i] + (args[i + 1] - args[i]) * c);
   };
 
@@ -54,6 +56,9 @@ function Teatro() {
     <>
       <RO step={step} p={p} STEPS={STEPS} s={s} />
       <button onClick={() => setGo((g) => !g)}>{go ? 'pause' : 'go'}</button>
+      <button onClick={() => setPausas((g) => !g)}>
+        {pausas ? 'continuo' : 'con pausas'}
+      </button>
     </>
   );
 
