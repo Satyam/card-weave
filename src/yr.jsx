@@ -38,10 +38,6 @@ const YR = ({ p, fill, backColor }) => {
       />
       <circle cx={p(300, 250, 200, 150, 100)} cy={900} r={100} fill={fill} />
       <circle cx={p(300, 350, 400, 450, 500)} cy={900} r={100} fill={fill} />
-      {/* <circle cx={300} cy={400} r={10} fill="red" />
-        <text x={700} y={100} style={{ fontSize: '100px' }}>
-          {step}
-        </text> */}
     </svg>
   );
 };

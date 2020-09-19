@@ -35,10 +35,6 @@ const RO = ({ p, fill, backColor }) => {
         height={p(0, 0, 400, 400, 400)}
         fill={fill}
       />
-      {/* <circle cx={300} cy={300} r={10} fill="red" /> */}
-      {/* <text x={700} y={100} style={{ fontSize: '100px' }}>
-        {step}
-      </text> */}
     </svg>
   );
 };
