@@ -22,7 +22,7 @@ const XY = ({ step, p, STEPS, s }) => {
         r={p(300, 250, 200, 150, 100)}
         fill={fill}
       />
-      <rect x={0} y={700} width={600} height={300} fill={backColor} />
+      <rect x={100} y={700} width={400} height={300} fill={backColor} />
       <circle cx={300} cy={700} r={p(100, 50, 0, 0, 0)} fill={backColor} />
       <rect
         x={p(0, 50, 100, 150, 200)}
