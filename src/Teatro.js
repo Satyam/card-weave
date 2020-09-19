@@ -48,19 +48,17 @@ function Teatro() {
     return Math.round(args[i] + (args[i + 1] - args[i]) * c);
   };
 
-  const s = (...args) => {
-    const l = args.length;
-    const i = Math.min(l - 1, Math.floor((step * l) / STEPS));
-    return args[i];
-  };
+  const fill = `hsl(${p(30, 270)}, 100%, 50%)`;
+  const backColor = 'white';
+
   return (
     <>
       <U />
 
-      <RO step={step} p={p} STEPS={STEPS} s={s} />
-      <OX step={step} p={p} STEPS={STEPS} s={s} />
-      <XY step={step} p={p} STEPS={STEPS} s={s} />
-      <YR step={step} p={p} STEPS={STEPS} s={s} />
+      <RO p={p} fill={fill} backColor={backColor} />
+      <OX p={p} fill={fill} backColor={backColor} />
+      <XY p={p} fill={fill} backColor={backColor} />
+      <YR p={p} fill={fill} backColor={backColor} />
       <button onClick={() => setGo((g) => !g)}>{go ? 'pause' : 'go'}</button>
       <button onClick={() => setPausas((g) => !g)}>
         {pausas ? 'continuo' : 'con pausas'}

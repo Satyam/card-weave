@@ -1,8 +1,6 @@
 import React from 'react';
 
-const YR = ({ step, p, STEPS, s }) => {
-  const fill = `hsl(${p(30, 270)}, 100%, 50%)`;
-  const backColor = 'white';
+const YR = ({ p, fill, backColor }) => {
   return (
     <svg
       viewBox={`-100 -100 800 1200`}
