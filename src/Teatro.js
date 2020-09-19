@@ -8,6 +8,9 @@ import YR from './yr';
 
 const STEPS = 20;
 const INTERVAL = 200;
+
+let counter = 0;
+
 function Teatro() {
   const [step, setStep] = useState(0);
   const [up, setUp] = useState(true);
@@ -39,6 +42,8 @@ function Teatro() {
     }
   }, [up, step, go, pausas]);
 
+  counter = (counter + 1) % 20;
+
   const p = (...args) => {
     const l = args.length;
     const f = (step * (l - 1)) / STEPS;
@@ -48,17 +53,24 @@ function Teatro() {
     return Math.round(args[i] + (args[i + 1] - args[i]) * c);
   };
 
-  const fill = `rgb(${p(255, 219)}, ${p(35, 0)}, ${p(8, 154)})`;
-  const backColor = 'white';
-
+  const args = {
+    p,
+    fill: `rgb(${p(255, 219)}, ${p(35, 0)}, ${p(8, 154)})`,
+    backColor: 'white',
+    transform: `
+    translate(${-counter * 5}, ${-counter * 5}), 
+    scale(${(counter + 1) / 20}),
+    rotate(${counter * 5}, 300, 300)
+    `,
+  };
   return (
     <>
       <U />
 
-      <RO p={p} fill={fill} backColor={backColor} />
-      <OX p={p} fill={fill} backColor={backColor} />
-      <XY p={p} fill={fill} backColor={backColor} />
-      <YR p={p} fill={fill} backColor={backColor} />
+      <RO {...args} />
+      <OX {...args} />
+      <XY {...args} />
+      <YR {...args} />
       <button onClick={() => setGo((g) => !g)}>{go ? 'pause' : 'go'}</button>
       <button onClick={() => setPausas((g) => !g)}>
         {pausas ? 'continuo' : 'con pausas'}
