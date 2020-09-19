@@ -48,7 +48,7 @@ function Teatro() {
     return Math.round(args[i] + (args[i + 1] - args[i]) * c);
   };
 
-  const fill = `hsl(${p(30, 270)}, 100%, 50%)`;
+  const fill = `rgb(${p(255, 219)}, ${p(35, 0)}, ${p(8, 154)})`;
   const backColor = 'white';
 
   return (
