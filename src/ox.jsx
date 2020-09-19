@@ -12,27 +12,33 @@ const OX = ({ p, fill, backColor }) => {
         x={0}
         y={0}
         fill={fill}
-        transform={`translate(0,${p(
-          400,
-          300,
-          200,
-          100,
-          0
-        )}), rotate(180, 300, 300)`}
+        transform={`translate(0,${p(400, 341, 200, 100, 0)}), rotate(${p(
+          180,
+          135,
+          90,
+          135,
+          180
+        )}, 300, 300)`}
       />
-      <use href="#U" x={0} y={p(0, 100, 200, 300, 400)} fill={fill} />
-      <rect
+      <use
+        href="#U"
         x={0}
-        y={500}
-        width={200}
-        height={p(200, 100, 0, 0, 0)}
+        y={0}
         fill={fill}
+        transform={`translate(0,${p(0, 59, 200, 300, 400)}),rotate(${p(
+          0,
+          -45,
+          -90,
+          -45,
+          0
+        )},300,300)`}
       />
+      <rect x={0} y={500} width={200} height={p(200, 0, 0, 0, 0)} fill={fill} />
       <rect
         x={400}
         y={500}
         width={200}
-        height={p(200, 100, 0, 0, 0)}
+        height={p(200, 0, 0, 0, 0)}
         fill={fill}
       />
       {/* <circle cx={300} cy={400} r={10} fill="red" />
