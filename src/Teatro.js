@@ -10,6 +10,7 @@ const STEPS = 20;
 const INTERVAL = 200;
 
 let counter = 0;
+let counterUp = true;
 
 function Teatro() {
   const [step, setStep] = useState(0);
@@ -42,7 +43,13 @@ function Teatro() {
     }
   }, [up, step, go, pausas]);
 
-  counter = (counter + 1) % 20;
+  if (counterUp) {
+    counter += 1;
+    counterUp = counter !== STEPS;
+  } else {
+    counter -= 1;
+    counterUp = counter === 0;
+  }
 
   const p = (...args) => {
     const l = args.length;
@@ -57,11 +64,12 @@ function Teatro() {
     p,
     fill: `rgb(${p(255, 219)}, ${p(35, 0)}, ${p(8, 154)})`,
     backColor: 'white',
-    transform: `
-    translate(${-counter * 5}, ${-counter * 5}), 
-    scale(${(counter + 1) / 20}),
-    rotate(${counter * 5}, 300, 300)
-    `,
+    width: '25%',
+    // transform: `
+    // translate(${-counter * 5}, ${-counter * 5}),
+    // scale(${(20 - counter) / 20}),
+    // rotate(${counter * 5}, 300, 300)
+    // `,
   };
   return (
     <>

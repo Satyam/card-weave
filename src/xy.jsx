@@ -1,11 +1,11 @@
 import React from 'react';
 
-const XY = ({ p, backColor, ...rest }) => {
+const XY = ({ p, backColor, width, ...rest }) => {
   return (
     <svg
       viewBox={`-100 -100 800 1200`}
       xmlns="http://www.w3.org/2000000/svg"
-      width="25%"
+      width={width}
     >
       <g {...rest}>
         <use href="#U" x={0} y={0} transform={`rotate(180, 300, 300)`} />

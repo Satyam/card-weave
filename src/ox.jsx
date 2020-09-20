@@ -1,11 +1,11 @@
 import React from 'react';
 
-const OX = ({ p, backColor, ...rest }) => {
+const OX = ({ p, backColor, width, ...rest }) => {
   return (
     <svg
       viewBox={`-100 -100 800 1200`}
       xmlns="http://www.w3.org/2000000/svg"
-      width="25%"
+      width={width}
     >
       <g {...rest}>
         <use
