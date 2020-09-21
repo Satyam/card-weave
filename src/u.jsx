@@ -7,7 +7,6 @@ const U = ({ backColor = 'white' }) => {
       xmlns="http://www.w3.org/2000000/svg"
       width="0"
     >
-      {' '}
       <g id="U">
         <path
           d={`
@@ -22,7 +21,6 @@ const U = ({ backColor = 'white' }) => {
           Z
         `}
         />
-        {/* */}
       </g>
     </svg>
   );
