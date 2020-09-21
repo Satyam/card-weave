@@ -35,6 +35,30 @@ const YR = ({ p, backColor, width, ...rest }) => {
         />
         <circle cx={p(300, 250, 200, 150, 100)} cy={900} r={100} />
         <circle cx={p(300, 350, 400, 450, 500)} cy={900} r={100} />
+        <line
+          x1={-100}
+          y1={1000}
+          x2={-100}
+          y2={1100}
+          stroke="black"
+          strokeWidth={1}
+        />
+        <line
+          x1={700}
+          y1={1000}
+          x2={700}
+          y2={1100}
+          stroke="black"
+          strokeWidth={1}
+        />
+        <line
+          x1={-100}
+          y1={1100}
+          x2={700}
+          y2={1100}
+          stroke="black"
+          strokeWidth={1}
+        />
       </g>
     </svg>
   );
