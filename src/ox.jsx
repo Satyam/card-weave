@@ -26,31 +26,8 @@ const OX = ({ p, backColor, width, ...rest }) => {
         />
         <rect x={0} y={500} width={200} height={p(200, 0, 0, 0, 0)} />
         <rect x={400} y={500} width={200} height={p(200, 0, 0, 0, 0)} />
-        <line
-          x1={-100}
-          y1={1000}
-          x2={-100}
-          y2={1100}
-          stroke="black"
-          strokeWidth={1}
-        />
-        <line
-          x1={700}
-          y1={1000}
-          x2={700}
-          y2={1100}
-          stroke="black"
-          strokeWidth={1}
-        />
-        <line
-          x1={-100}
-          y1={1100}
-          x2={700}
-          y2={1100}
-          stroke="black"
-          strokeWidth={1}
-        />
       </g>
+      <use href="#B" />
     </svg>
   );
 };

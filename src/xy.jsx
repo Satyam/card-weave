@@ -30,31 +30,8 @@ const XY = ({ p, backColor, width, ...rest }) => {
         />
         <circle cx={p(100, 150, 200, 250, 300)} cy={900} r={100} />
         <circle cx={p(500, 450, 400, 350, 300)} cy={900} r={100} />
-        <line
-          x1={-100}
-          y1={1000}
-          x2={-100}
-          y2={1100}
-          stroke="black"
-          strokeWidth={1}
-        />
-        <line
-          x1={700}
-          y1={1000}
-          x2={700}
-          y2={1100}
-          stroke="black"
-          strokeWidth={1}
-        />
-        <line
-          x1={-100}
-          y1={1100}
-          x2={700}
-          y2={1100}
-          stroke="black"
-          strokeWidth={1}
-        />
       </g>
+      <use href="#B" />
     </svg>
   );
 };
