@@ -5,9 +5,15 @@
   .row {
     width: 15cm;
   }
+  .col {
+    width: 37mm;
+  }
 }
 @media screen {
   .row {
     width: 100%;
+  }
+  .col {
+    width: 25%;
   }
 }
