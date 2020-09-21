@@ -6,6 +6,8 @@ import OX from './ox';
 import XY from './xy';
 import YR from './yr';
 
+import './zoo.css';
+
 const STEPS = 20;
 const INTERVAL = 200;
 
@@ -74,15 +76,16 @@ function Teatro() {
   return (
     <>
       <U />
-
-      <RO {...args} />
-      <OX {...args} />
-      <XY {...args} />
-      <YR {...args} />
-      <button onClick={() => setGo((g) => !g)}>{go ? 'pause' : 'go'}</button>
-      <button onClick={() => setPausas((g) => !g)}>
-        {pausas ? 'continuo' : 'con pausas'}
-      </button>
+      <div className="noPrint">
+        <RO {...args} />
+        <OX {...args} />
+        <XY {...args} />
+        <YR {...args} />
+        <button onClick={() => setGo((g) => !g)}>{go ? 'pause' : 'go'}</button>
+        <button onClick={() => setPausas((g) => !g)}>
+          {pausas ? 'continuo' : 'con pausas'}
+        </button>
+      </div>
     </>
   );
 }

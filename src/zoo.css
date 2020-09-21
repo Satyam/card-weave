@@ -1,0 +1,13 @@
+@media print {
+  .noPrint {
+    display: none;
+  }
+  .row {
+    width: 15cm;
+  }
+}
+@media screen {
+  .row {
+    width: 100%;
+  }
+}

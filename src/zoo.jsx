@@ -6,6 +6,8 @@ import OX from './ox';
 import XY from './xy';
 import YR from './yr';
 
+import './zoo.css';
+
 const STEPS = 20;
 
 export default function Zoo() {
@@ -32,7 +34,7 @@ export default function Zoo() {
     <>
       <U />
       {new Array(4).fill(1).map((_, row) => (
-        <div key={row} style={{ width: '15cm' }}>
+        <div key={row} className="row">
           {new Array(4).fill(1).map((_, i) => {
             const args1 = { ...args, p: (...a) => a[i] };
             const C = [RO, OX, XY, YR][row];
