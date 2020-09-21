@@ -10,6 +10,8 @@ import './zoo.css';
 
 const STEPS = 20;
 
+const map = (n, fn) => new Array(n).fill(1).map((_, index) => fn(index));
+
 export default function Zoo() {
   const step = 1;
   const p = (...args) => {
@@ -21,7 +23,6 @@ export default function Zoo() {
     return Math.round(args[i] + (args[i + 1] - args[i]) * c);
   };
   const args = {
-    fill: `rgb(${p(255, 219)}, ${p(35, 0)}, ${p(8, 154)})`,
     backColor: 'white',
     width: '25%',
     // transform: `
@@ -30,15 +31,26 @@ export default function Zoo() {
     // rotate(${counter * 5}, 300, 300)
     // `,
   };
+  const colors = map(8, (i) => {
+    const p = (a, b) => Math.round(a + ((b - a) * i) / 7);
+    return `rgb(${p(255, 219)}, ${p(35, 0)}, ${p(8, 154)})`;
+  });
+  colors.forEach((c, i) => (colors[15 - i] = c));
+
   return (
     <>
       <U />
-      {new Array(4).fill(1).map((_, row) => (
+      {map(4, (row) => (
         <div key={row} className="row">
-          {new Array(4).fill(1).map((_, i) => {
-            const args1 = { ...args, p: (...a) => a[i] };
+          {map(4, (col) => {
+            const args1 = {
+              ...args,
+              p: (...a) => a[col],
+              fill: colors[row * 4 + col],
+            };
+            console.log(row, col, row * 4 + col, colors[row * 4 + col]);
             const C = [RO, OX, XY, YR][row];
-            return <C key={i} {...args1} />;
+            return <C key={col} {...args1} />;
           })}
         </div>
       ))}
