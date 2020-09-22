@@ -14,8 +14,21 @@ const XY = ({ p, backColor, width, ...rest }) => {
           cy={p(700, 700, 700, 600, 500)}
           r={p(300, 250, 200, 150, 100)}
         />
-        <rect x={100} y={700} width={400} height={300} fill={backColor} />
-        <circle cx={300} cy={700} r={p(100, 50, 0, 0, 0)} fill={backColor} />
+        <rect
+          x={p(100, 150, 200, 250, 300)}
+          y={700}
+          width={p(400, 300, 200, 100, 0)}
+          height={300}
+          fill={backColor}
+          stroke={backColor}
+        />
+        <circle
+          cx={300}
+          cy={700}
+          r={p(100, 50, 0, 0, 0)}
+          fill={backColor}
+          stroke={backColor}
+        />
         <rect
           x={p(0, 50, 100, 150, 200)}
           y={p(700, 700, 700, 600, 500)}
