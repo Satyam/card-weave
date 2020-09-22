@@ -3,10 +3,14 @@
     display: none;
   }
   .row {
+    margin-top: 10mm;
     width: 15cm;
   }
   .col {
     width: 37mm;
+  }
+  .espiral {
+    width: 187mm;
   }
 }
 @media screen {
@@ -15,5 +19,8 @@
   }
   .col {
     width: 25%;
+  }
+  .espiral {
+    width: 50%;
   }
 }
