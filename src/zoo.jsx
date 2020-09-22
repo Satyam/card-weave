@@ -11,14 +11,23 @@ import './zoo.css';
 
 const map = (n, fn) => new Array(n).fill(1).map((_, index) => fn(index));
 
-export default function Zoo() {
-  const colors = map(8, (i) => {
-    const p = (a, b) => Math.round(a + ((b - a) * i) / 7);
-    return [p(255, 219), p(35, 0), p(8, 154)];
-  });
-  colors.forEach((c, i) => (colors[15 - i] = c));
+const D = 4;
 
-  const D = 4;
+const colors = map(D, (depth) => {
+  const q = (a, b) => Math.round(a + ((b - a) * depth) / (D - 1));
+
+  return map(8, (i) => {
+    const p = (a, b) => Math.round(a + ((b - a) * i) / 7);
+    return [
+      p(q(255, 107), q(219, 0)),
+      p(q(35, 255), q(0, 68)),
+      p(q(8, 8), q(154, 255)),
+    ];
+  });
+});
+
+colors.forEach((d) => d.forEach((c, i) => (d[15 - i] = c)));
+export default function Zoo() {
   return (
     <>
       <Border />
@@ -30,7 +39,7 @@ export default function Zoo() {
               {map(D, (depth) => {
                 const rD = D - depth;
                 const inv = 1 / rD;
-                const color = `rgb(${colors[(row * 4 + col + depth) % 16].join(
+                const color = `rgb(${colors[rD - 1][(row * 4 + col) % 16].join(
                   ','
                 )})`;
                 const args = {
