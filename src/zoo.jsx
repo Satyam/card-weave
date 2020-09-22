@@ -53,6 +53,7 @@ export default function Zoo() {
                     rotate(${(rD - 1) * 10}, 300, 300)
                     `,
                   fillOpacity: inv,
+                  strokeOpacity: inv,
                 };
                 const C = [RO, OX, XY, YR][row];
                 return <C key={depth} {...args} />;
