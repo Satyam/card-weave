@@ -14,7 +14,7 @@ const map = (n, fn) => new Array(n).fill(1).map((_, index) => fn(index));
 export default function Zoo() {
   const colors = map(8, (i) => {
     const p = (a, b) => Math.round(a + ((b - a) * i) / 7);
-    return `rgb(${p(255, 219)}, ${p(35, 0)}, ${p(8, 154)})`;
+    return [p(255, 219), p(35, 0), p(8, 154)];
   });
   colors.forEach((c, i) => (colors[15 - i] = c));
 
@@ -30,10 +30,14 @@ export default function Zoo() {
               {map(D, (depth) => {
                 const rD = D - depth;
                 const inv = 1 / rD;
+                const color = `rgb(${colors[(row * 4 + col + depth) % 16].join(
+                  ','
+                )})`;
                 const args = {
                   backColor: 'white',
                   p: (...a) => a[col],
-                  fill: colors[(row * 4 + col + depth) % 16],
+                  fill: color,
+                  stroke: color,
                   transform: `
                   translate(${-(rD - 1) * 10}, ${-(rD - 1) * 10}),
                   scale(${inv}),
