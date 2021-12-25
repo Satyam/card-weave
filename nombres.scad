@@ -98,10 +98,65 @@ module Saty() {
     translate([120,0,0]) Y();
 }
 
+module guia (a) {
+    translate([a,a,40]) rotate([0,0,-45]) cube([180,1,80],center = true);
+}
+
 intersection() {
     translate([0,150,0]) rotate([90,0,0]) linear_extrude(150) Roxy();
     rotate([90,0,90]) linear_extrude(150) Saty();
-    translate([75,75,0]) cylinder(50,80,80);
+    for (a = [15:20:150]) guia(a); 
 }
+
+
+module hcore () {
+    translate([-10,0,0]) cylinder(20,10,10);
+    intersection() {
+        translate([15,0,0]) cylinder(20,35, 35);
+        translate([-40,-70,0]) cube([40,70,20]);
+    };
+}
+
+module core1 () {
+    intersection () {
+        hcore();
+        translate([-20,-40,0]) cube([10,50,20]);
+    }
+}
+module core2 () {
+    intersection () {
+        hcore();
+        translate([-10,-40,0]) cube([10,50,20]);
+    }
+}
+
+module coreL () intersection() {
+    hcore();
+    rotate([0,45,0]) translate([-30,-40,0]) cube([30,50,1]);
+}
+module coreR () mirror([1,0,0]) coreL();
+
+module coreLL () intersection() {
+    coreL();
+    translate([-20,-40,0]) cube([10,50,20]);
+}    
+
+module coreLC () intersection() {
+    coreL();
+    translate([-10,-40,0]) cube([10,50,20]);
+}    
+
+module coreRR () intersection() {
+    coreR();
+    translate([10,-40,0]) cube([10,50,20]);
+}
+module coreRC () intersection() {
+    coreR();
+    translate([0,-40,0]) cube([10,50,20]);
+}
+coreLL();
+coreLC();
+coreRC();
+coreRR();
 
 
