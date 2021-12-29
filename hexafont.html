@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <style>
+      @media screen {
+        #svg {
+          width: 90vw;
+          height: 110vw;
+        }
+      }
+      @media print {
+        #svg {
+          width: 180mm;
+          height: 260mm;
+        }
+      }
+      path {
+        stroke-width: 1px;
+        stroke: black;
+      }
+      .hidden {
+        display: none;
+      }
+      text {
+        font-size: xx-large;
+      }
+    </style>
+  </head>
+  <body>
+    <svg id="svg" viewbox="0,0,2100,2600"></svg>
+    <script>
+      const ch = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789/@.,*';
+      const od = [3, 2, 1, 0, 1, 2];
+      const ou = [2, 1, 0, 1, 2, 3];
+      const cd = [3, 4, 5, 6, 5, 4];
+      const cu = [4, 5, 6, 5, 4, 3];
+      const off = 25;
+      const off2 = 50;
+      const ya = [
+        `<g class="hidden">
+          <path id="d" d="M0,0 L ${off2},0 L${off},${off2} z" />
+          <path id="u" d="M${off},0 L ${off2},${off2} L0,${off2}z" />
+        </g>`,
+      ];
+
+      const hexByRow = 6;
+      const hexRows = 7;
+      for (let py = 0; py < hexRows; py++) {
+        for (let px = 0; px < hexByRow; px++) {
+          ya.push(
+            `<text 
+              x="${px * off2 * (hexByRow + 1)}" 
+              y="${py * off2 * hexRows + off2}">
+                ${ch[px + py * hexByRow]}
+            </text>
+            <g data-ch="${py * hexByRow + px}">`
+          );
+          for (let y = 0; y < 6; y++) {
+            const xa = [];
+            const vy = py * 7 * off2 + y * off2;
+            // down
+            for (let x = 0; x < cd[y]; x++) {
+              ya.push(
+                `<use href="#d" 
+              x="${
+                px * (hexByRow + 1) * off2 + od[y] * off + x * off2
+              }" y="${vy}" 
+              data-c="transparent" style="fill: transparent"
+            />`
+              );
+            }
+            // up
+            for (let x = 0; x < cu[y]; x++) {
+              ya.push(
+                `<use href="#u" 
+              x="${
+                px * (hexByRow + 1) * off2 + ou[y] * off + x * off2
+              }" y="${vy}" 
+              data-c="transparent" style="fill: transparent"
+            />`
+              );
+            }
+          }
+          ya.push('</g>');
+        }
+      }
+
+      svg.innerHTML = ya.join(' ');
+
+      document.getElementById('svg').onclick = (ev) => {
+        const r = ev.target;
+        if (r.dataset.c === 'black') {
+          r.style.fill = 'transparent';
+          r.dataset.c = 'transparent';
+        } else {
+          r.style.fill = 'black';
+          r.dataset.c = 'black';
+        }
+      };
+    </script>
+  </body>
+</html>
