@@ -28,7 +28,9 @@
   <body>
     <svg id="svg" viewbox="0,0,2100,2600"></svg>
     <script>
-      const ch = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789/@.,*';
+      const store = window.localStorage;
+
+      const ch = 'ABCDEFGHIJKLMNnOPQRSTUVWXYZ0123456789/@.,*';
       const od = [3, 2, 1, 0, 1, 2];
       const ou = [2, 1, 0, 1, 2, 3];
       const cd = [3, 4, 5, 6, 5, 4];
@@ -46,36 +48,40 @@
       const hexRows = 7;
       for (let py = 0; py < hexRows; py++) {
         for (let px = 0; px < hexByRow; px++) {
+          const code = px + py * hexByRow;
           ya.push(
             `<text 
               x="${px * off2 * (hexByRow + 1)}" 
               y="${py * off2 * hexRows + off2}">
-                ${ch[px + py * hexByRow]}
+                ${ch.substring(code, code + 1)}
             </text>
-            <g data-ch="${py * hexByRow + px}">`
+            <g data-ch="${code}">`
           );
+          const saved = store.getItem(code)?.split(',') || [];
           for (let y = 0; y < 6; y++) {
             const xa = [];
             const vy = py * 7 * off2 + y * off2;
             // down
             for (let x = 0; x < cd[y]; x++) {
+              const color = saved.shift() ? 'black' : 'transparent';
               ya.push(
                 `<use href="#d" 
               x="${
                 px * (hexByRow + 1) * off2 + od[y] * off + x * off2
               }" y="${vy}" 
-              data-c="transparent" style="fill: transparent"
+              data-c="${color}" style="fill: ${color}"
             />`
               );
             }
             // up
             for (let x = 0; x < cu[y]; x++) {
+              const color = saved.shift() ? 'black' : 'transparent';
               ya.push(
                 `<use href="#u" 
               x="${
                 px * (hexByRow + 1) * off2 + ou[y] * off + x * off2
               }" y="${vy}" 
-              data-c="transparent" style="fill: transparent"
+              data-c="${color}" style="fill: ${color}"
             />`
               );
             }
@@ -95,6 +101,12 @@
           r.style.fill = 'black';
           r.dataset.c = 'black';
         }
+        const g = r.parentElement;
+        const s = [];
+        for (let i = 0; i < g.children.length; i++) {
+          s.push(g.children.item(i).dataset.c === 'black' ? '1' : '');
+        }
+        store.setItem(g.dataset.ch, s.join(','));
       };
     </script>
   </body>
