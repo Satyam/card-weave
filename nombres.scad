@@ -102,12 +102,23 @@ module guia (a) {
     translate([a,a,40]) rotate([0,0,-45]) cube([180,1,80],center = true);
 }
 
-intersection() {
-    translate([0,150,0]) rotate([90,0,0]) linear_extrude(150) Roxy();
-    rotate([90,0,90]) linear_extrude(150) Saty();
-    for (a = [15:20:150]) guia(a); 
+sec=0;
+cor=0;
+if (cor == 0){
+    if (sec > 0) {
+        intersection() {
+            translate([0,150,0]) rotate([90,0,0]) linear_extrude(150) Roxy();
+            rotate([90,0,90]) linear_extrude(150) Saty();
+            guia(sec);
+        }
+    } else {
+        intersection() {
+            translate([0,150,0]) rotate([90,0,0]) linear_extrude(150) Roxy();
+            rotate([90,0,90]) linear_extrude(150) Saty();
+            for (a = [15:20:150]) guia(a);
+        }
+    }
 }
-
 
 module hcore () translate([0,35,0]) rotate([0,45,0]) {
     intersection() {
@@ -137,12 +148,12 @@ module core3 () intersection() {
     translate([20,0,0]) cube([10,50,20]);
 }
 
-translate([0,150,0]) rotate([90,0,0]) core1();
-translate([50,100,0]) rotate([90,0,0]) core2();
-translate([40,110,0]) rotate([90,0,0]) core3();
+
+if ((sec == 0 && cor == 0) ||  cor == 1) translate([0,150,0]) rotate([90,0,0]) core1();
+if ((sec == 0 && cor == 0) ||  cor == 2) translate([50,100,0]) rotate([90,0,0]) core2();
+if ((sec == 0 && cor == 0) ||  cor == 3) translate([40,110,0]) rotate([90,0,0]) core3();
 
 
-translate([80,70,0]) rotate([90,0,-90]) core1();
-translate([40,110,0]) rotate([90,0,-90]) core2();
-translate([80,70,0]) rotate([90,0,-90]) core3();
-
+if ((sec == 0 && cor == 0) ||  cor == 4) translate([80,70,0]) rotate([90,0,-90]) core1();
+if ((sec == 0 && cor == 0) ||  cor == 5) translate([40,110,0]) rotate([90,0,-90]) core2();
+if ((sec == 0 && cor == 0) ||  cor == 6) translate([80,70,0]) rotate([90,0,-90]) core3();
