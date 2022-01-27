@@ -99,17 +99,32 @@ module Saty() {
 }
 
 module guia (a) {
-    translate([a,a,40]) rotate([0,0,-45]) cube([180,1,80],center = true);
+    translate([a,a,20]) rotate([0,0,-45]) cube([250,1,80],center = true);
+}
+
+module box () {
+    translate([75,75,22]) {
+        difference () {
+            cube([172, 172, 67], true);
+            cube([170, 170, 65], true);
+        }
+    }
 }
 
 sec=0;
 cor=0;
 if (cor == 0){
     if (sec > 0) {
-        intersection() {
-            translate([0,150,0]) rotate([90,0,0]) linear_extrude(150) Roxy();
-            rotate([90,0,90]) linear_extrude(150) Saty();
-            guia(sec);
+        union() {
+            intersection() {
+                translate([0,150,0]) rotate([90,0,0]) linear_extrude(150) Roxy();
+                rotate([90,0,90]) linear_extrude(150) Saty();
+                guia(sec);
+            }
+            intersection() {
+                box();
+                guia(sec);
+            }
         }
     } else {
         intersection() {
@@ -149,11 +164,11 @@ module core3 () intersection() {
 }
 
 
-if ((sec == 0 && cor == 0) ||  cor == 1) translate([0,150,0]) rotate([90,0,0]) core1();
-if ((sec == 0 && cor == 0) ||  cor == 2) translate([50,100,0]) rotate([90,0,0]) core2();
-if ((sec == 0 && cor == 0) ||  cor == 3) translate([40,110,0]) rotate([90,0,0]) core3();
+if ((sec == 0 && cor == 0) ||  cor == 1) color("blue") translate([0,150,0]) rotate([90,0,0]) core1();
+if ((sec == 0 && cor == 0) ||  cor == 2) color("red") translate([50,100,0]) rotate([90,0,0]) core2();
+if ((sec == 0 && cor == 0) ||  cor == 3) color("green") translate([40,110,0]) rotate([90,0,0]) core3();
 
 
-if ((sec == 0 && cor == 0) ||  cor == 4) translate([80,70,0]) rotate([90,0,-90]) core1();
-if ((sec == 0 && cor == 0) ||  cor == 5) translate([40,110,0]) rotate([90,0,-90]) core2();
-if ((sec == 0 && cor == 0) ||  cor == 6) translate([80,70,0]) rotate([90,0,-90]) core3();
+if ((sec == 0 && cor == 0) ||  cor == 4) color("cyan") translate([80,70,0]) rotate([90,0,-90]) core1();
+if ((sec == 0 && cor == 0) ||  cor == 5) color("pink") translate([40,110,0]) rotate([90,0,-90]) core2();
+if ((sec == 0 && cor == 0) ||  cor == 6) color("lime") translate([80,70,0]) rotate([90,0,-90]) core3();
