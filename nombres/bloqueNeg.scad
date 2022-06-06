@@ -1,4 +1,5 @@
-use <RoxySaty.scad>
+use <bloques.scad>
+use <cuore.scad>
 
 /* Un solo bloque
 difference() {
@@ -22,7 +23,6 @@ for (z=[0:5:50]) difference() {
 }
 */
 
-anchoPanel = sqrt(2) * 20;
 /* bloque con paneles * /
 intersection() {
     translate([75,75,25]) cube([170, 170, 70], true);
@@ -45,95 +45,45 @@ intersection() {
     }
 */
 
-intersection() {
-    translate([75,75,25]) cube([170, 170, 70], true);
-    for (p = [
-        [-5, -5, 25],
-        [-5, 15, 25],
-        [-5, 35, 25],
-        [-5, 55, 25],
-        [-5, 75, 25],
-        [-5, 95, 25],
-        [-5, 115, 25],
-        [-5, 135, 25],
-        [-5, 155, 25],
-        [15, -5, 25],
-        [15, 15, 25],
-        [15, 35, 25],
-        [15, 55, 25],
-        [15, 75, 25],
-        [15, 95, 25],
-        [15, 115, 25],
-        [15, 135, 25],
-        [15, 155, 25],
-        [35, -5, 25],
-        [35, 15, 25],
-        [35, 35, 25],
-        [35, 55, 25],
-        [35, 75, 25],
-        [35, 95, 25],
-        [35, 115, 25],
-        [35, 135, 25],
-        [35, 155, 25],
-        [55, -5, 25],
-        [55, 15, 25],
-        [55, 35, 25],
-        [55, 55, 25],
-        [55, 75, 25],
-        [55, 95, 25],
-        [55, 115, 25],
-        [55, 135, 25],
-        [55, 155, 25],
-        [75, -5, 25],
-        [75, 15, 25],
-        [75, 35, 25],
-        [75, 55, 25],
-        [75, 75, 25],
-        [75, 95, 25],
-        [75, 115, 25],
-        [75, 135, 25],
-        [75, 155, 25],
-        [95, -5, 25],
-        [95, 15, 25],
-        [95, 35, 25],
-        [95, 55, 25],
-        [95, 75, 25],
-        [95, 95, 25],
-        [95, 115, 25],
-        [95, 135, 25],
-        [95, 155, 25],
-        [115, -5, 25],
-        [115, 15, 25],
-        [115, 35, 25],
-        [115, 55, 25],
-        [115, 75, 25],
-        [115, 95, 25],
-        [115, 115, 25],
-        [115, 135, 25],
-        [115, 155, 25],
-        [135, -5, 25],
-        [135, 15, 25],
-        [135, 35, 25],
-        [135, 55, 25],
-        [135, 75, 25],
-        [135, 95, 25],
-        [135, 115, 25],
-        [135, 135, 25],
-        [135, 155, 25],
-        [155, -5, 25],
-        [155, 15, 25],
-        [155, 35, 25],
-        [155, 55, 25],
-        [155, 75, 25],
-        [155, 95, 25],
-        [155, 115, 25],
-        [155, 135, 25],
-        [155, 155, 25],
-    ]) {
-            difference() {
-                translate(p) rotate([0,0,45]) cube([anchoPanel, 1, 70], true);
-                translate([0,160,0]) rotate([90,0,0]) linear_extrude(180) Roxy();
-                translate([160,150,0]) rotate([90,0,-90]) linear_extrude(180) Saty();
+intervalo = 40;
+offset=15;
+anchoPanel = sqrt(2) * intervalo;
+
+paneles = [for (x =[offset: intervalo: 160]) for (y=[offset: intervalo: 160]) [x, y, 25]];
+
+malos=[0,1,4,5,9,11,14];
+l = len(paneles);
+for (i = [0:l-1]) {
+    if (len(search(i, malos)) == 0) {
+        color ([i/l, 1 - i/l, 0]) {
+            intersection() {
+                translate(paneles[i]) rotate([0,0,45]) cube([anchoPanel, 0.1, 70], true);
+                RoxySatyNeg();
+            }
         }
     }
 }
+//Roxys
+for (p = [[55, 115, 25]]) {
+    intersection() {
+        translate(p) cube([intervalo, 0.1, 70], true);
+        RoxySatyNeg();
+    }
+}
+// Satys
+for (p = [[75, 135,25], [115, 55, 25]]) {
+    intersection() {
+        translate(p) rotate([0,0,90]) cube([intervalo, 0.1, 70], true);
+        RoxySatyNeg();
+    }
+}
+
+// cuore Roxy
+translate([30, 30, 0]) mirror([-1,1,0]) rotate([90,0,90])  core1();
+translate([60, 60, 0]) rotate([90,0,0])  core2();
+translate([90, 90, 0]) rotate([90,0,0])  core3();
+
+// cuore Saty
+translate([30, 30, 0])  rotate([90,0,90]) core1();
+translate([60, 60, 0]) rotate([90,0,90]) core2();
+translate([90, 90, 0]) rotate([90,0,90]) core3();

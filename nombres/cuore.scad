@@ -7,7 +7,7 @@ module hcore () translate([0,35,0]) rotate([0,45,0]) {
                 translate([0,-70,0]) cube([40,70,20]);
             };
         }
-        rotate([0,-45,0]) translate([0,-35,0]) cube([40,50,1]);
+        rotate([0,-45,0]) translate([0,-35,0]) cube([40,50,0.1]);
     }
 }
 
