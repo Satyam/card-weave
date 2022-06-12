@@ -30,42 +30,49 @@ if (t) {
 }
     
 //Roxys
-if (!t || r) {
+if (!t || r == 1) {
     intersection() {
-        translate([55, 115, 25]) cube([10, 0.1, 30], true);
+        translate([55, 155, 25]) cube([10, 0.1, 30], true);
         RoxySatyNeg();
-    };
+    }
+}
+if (!t || r == 2) {
     intersection() {
-        translate([55, 115, 5]) cube([intervalo, 0.1, 20], true);
+        translate([55, 115, 2.5]) cube([intervalo, 0.1, 15], true);
         RoxySatyNeg();
-    };
+    }
 }
 
 // Satys
-// satysBuenos = [[75, 135,25], [115, 55, 25]];
+// S
 if (!t || s == 1) {
     intersection() {
-        translate([75, 127.5, 35])  cube([0.1, 25, 20], true);
+        translate([35, 142.5, 15]) cube([0.1, 25, 10], true);
         RoxySatyNeg();
-    };
-    intersection() {
-        translate([75, 142.5, 15]) cube([0.1, 25, 10], true);
-        RoxySatyNeg();
-    };
+    }
 }
 if (!t || s == 2) {
     intersection() {
-        translate([75, 67.5, 30]) rotate([0,0,90]) cube([15, 0.1, 20], true);
+        translate([75, 127.5, 35])  cube([0.1, 25, 20], true);
         RoxySatyNeg();
     }
 }
 
+// T
 if (!t || s == 3) {
     intersection() {
-        translate([155, 42.5, 30]) rotate([0,0,90]) cube([15, 0.1, 20], true);
+        RoxySatyNeg();
+        translate([155, 67.5, 32.5]) cube([0.1, 15, 25], true);
+    }
+}
+if (!t || s == 4) {
+    intersection() {
+        translate([115, 42.5, 32.5]) cube([0.1, 15,  25], true);
         RoxySatyNeg();
     }
 }
+
+
 
 // if (t) {
 //     if (s) intersection() {

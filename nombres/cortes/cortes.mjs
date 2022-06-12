@@ -28,20 +28,22 @@ for (let d = 1; d < 10; d++) {
   ]}`;
 }
 
-await $`openscad ${[
-  '-o',
-  `r0.png`,
-  '--camera',
-  '75,75,25,90,0,0,200',
-  '-D',
-  `r=1`,
-  ...opts,
-]}`;
-
-for (let s = 1; s < 4; s++) {
+for (let r = 1; r < 3; r++) {
   await $`openscad ${[
     '-o',
-    `s${String(s).padStart(3, '0')}.png`,
+    `r${r}.png`,
+    '--camera',
+    '75,75,25,90,0,0,200',
+    '-D',
+    `r=${r}`,
+    ...opts,
+  ]}`;
+}
+
+for (let s = 1; s < 5; s++) {
+  await $`openscad ${[
+    '-o',
+    `s${s}.png`,
     '--camera',
     '75,75,25,90,0,270,200',
     '-D',
