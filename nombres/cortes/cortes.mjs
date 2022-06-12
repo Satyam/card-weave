@@ -38,7 +38,7 @@ await $`openscad ${[
   ...opts,
 ]}`;
 
-for (let s = 1; s < 3; s++) {
+for (let s = 1; s < 4; s++) {
   await $`openscad ${[
     '-o',
     `s${String(s).padStart(3, '0')}.png`,

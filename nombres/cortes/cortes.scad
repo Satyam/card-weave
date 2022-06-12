@@ -32,26 +32,54 @@ if (t) {
 //Roxys
 if (!t || r) {
     intersection() {
-        translate([55, 115, 25]) cube([intervalo, 0.1, 70], true);
+        translate([55, 115, 25]) cube([10, 0.1, 30], true);
+        RoxySatyNeg();
+    };
+    intersection() {
+        translate([55, 115, 5]) cube([intervalo, 0.1, 20], true);
+        RoxySatyNeg();
+    };
+}
+
+// Satys
+// satysBuenos = [[75, 135,25], [115, 55, 25]];
+if (!t || s == 1) {
+    intersection() {
+        translate([75, 127.5, 35])  cube([0.1, 25, 20], true);
+        RoxySatyNeg();
+    };
+    intersection() {
+        translate([75, 142.5, 15]) cube([0.1, 25, 10], true);
+        RoxySatyNeg();
+    };
+}
+if (!t || s == 2) {
+    intersection() {
+        translate([75, 67.5, 30]) rotate([0,0,90]) cube([15, 0.1, 20], true);
         RoxySatyNeg();
     }
 }
 
-// Satys
-satysBuenos = [[75, 135,25], [115, 55, 25]];
-if (t) {
-    if (s) intersection() {
-        translate(satysBuenos[s-1]) rotate([0,0,90]) cube([intervalo, 0.1, 70], true);
+if (!t || s == 3) {
+    intersection() {
+        translate([155, 42.5, 30]) rotate([0,0,90]) cube([15, 0.1, 20], true);
         RoxySatyNeg();
     }
-} else {
-    for (p = satysBuenos) {
-        intersection() {
-            translate(p) rotate([0,0,90]) cube([intervalo, 0.1, 70], true);
-            RoxySatyNeg();
-        }
-    }
 }
+
+// if (t) {
+//     if (s) intersection() {
+//         translate(satysBuenos[s-1]) rotate([0,0,90]) cube([intervalo, 0.1, 70], true);
+//         RoxySatyNeg();
+//     }
+// } else {
+//     for (p = satysBuenos) {
+//         intersection() {
+//             translate(p) rotate([0,0,90]) cube([intervalo, 0.1, 70], true);
+//             RoxySatyNeg();
+//         }
+//     }
+// }
 
 // cuore Roxy
 if (!t || c == 1) translate([30, 30, 0]) mirror([-1,1,0]) rotate([90,0,90])  core1();
