@@ -1,0 +1,21 @@
+.templates {
+  display: none;
+}
+path {
+  stroke-width: 4;
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+#EN,
+#ON {
+  stroke: orange;
+}
+#EV,
+#OV {
+  stroke: purple;
+}
+#bkg {
+  fill: white;
+  stroke: none;
+}
