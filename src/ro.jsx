@@ -3,7 +3,7 @@ import React from 'react';
 const RO = ({ p, backColor, width, ...rest }) => {
   return (
     <svg
-      viewBox={`-100 -100 800 1200`}
+      viewBox={`-100 -300 800 1400`}
       xmlns="http://www.w3.org/2000000/svg"
       width={width}
     >

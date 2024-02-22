@@ -4,7 +4,7 @@ const map = (n, fn) => new Array(n).fill(1).map((_, index) => fn(index));
 
 const INC = 235;
 const RADIO_MAX = 1000;
-const GAJOS = 8;
+const GAJOS = 9;
 const espiral = (cntInicial, cw) => {
   let r = 0;
   let antX = 0;

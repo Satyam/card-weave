@@ -3,14 +3,16 @@
     display: none;
   }
   .row {
-    margin-top: 10mm;
-    width: 15cm;
+    padding-bottom: 10mm;
+    width: 149mm;
+    border: thin solid black;
   }
   .col {
-    width: 37mm;
+    width: 25%;
   }
   .espiral {
-    width: 187mm;
+    width: 189mm;
+    margin-top: 1cm;
   }
 }
 @media screen {

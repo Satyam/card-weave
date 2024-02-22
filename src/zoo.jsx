@@ -35,7 +35,7 @@ export default function Zoo() {
       {map(4, (row) => (
         <div key={row} className="row">
           {map(4, (col) => (
-            <svg viewBox={`0 0 800 1200`} className="col" key={col}>
+            <svg viewBox={`0 0 800 1400`} className="col" key={col}>
               {map(D, (depth) => {
                 const rD = D - depth;
                 const inv = 1 / rD;
