@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .templates {
+        display: none;
+      }
+      path {
+        stroke-width: 2;
+        fill: none;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+      #EN,
+      #ON {
+        stroke: orange;
+      }
+      #EV,
+      #OV {
+        stroke: purple;
+      }
+      #bkg {
+        fill: white;
+        stroke: none;
+      }
+    </style>
+  </head>
+  <body>
+    <svg viewbox="0,0,600,200" width="100%">
+      <g class="templates">
+        <rect id="bkg" x="0" y="0" width="60" height="20" />
+        <path id="pointLeft" d="M 0,0   L 10,10 0,20" />
+        <path id="up" d="M 20,10 L 30,0 40,10 40,20 20,20 20,10" />
+        <path id="pointRight" d="M 60,0  L 50,10 60,20" />
+        <path id="buttLeft" d="M0,0   L 10,0 10,20 0,20" />
+        <path id="down" d="M 20,0  L 40,0 40,10 30,20 20,10 20,0" />
+        <path id="buttRight" d="M 60,0  L 50,0 50,20 60,20" />
+        <g id="EN">
+          <use href="#bkg" />
+          <use href="#pointLeft" />
+          <use href="#up" />
+          <use href="#pointRight" />
+        </g>
+        <g id="ON">
+          <use href="#bkg" />
+          <use href="#buttLeft" />
+          <use href="#up" />
+          <use href="#buttRight" />
+        </g>
+        <g id="EV">
+          <use href="#bkg" />
+          <use href="#pointLeft" />
+          <use href="#down" />
+          <use href="#pointRight" />
+        </g>
+        <g id="OV">
+          <use href="#bkg" />
+          <use href="#buttLeft" />
+          <use href="#up" />
+          <use href="#buttRight" />
+        </g>
+      </g>
+      <g id="letra" class="letra">
+        <circle cx="600" cy="200" r="10" />
+      </g>
+    </svg>
+    <script>
+      const tipos = ['EN', 'ON', 'EV', 'OV'];
+      const g = document.getElementById('letra');
+      for (let row = 0; row < 8; row++) {
+        for (let col = 0; col < 8; col++) {
+          const el = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'use'
+          );
+          el.dataset.col = col;
+          el.dataset.row = row;
+          el.dataset.tipo = tipos[(row + col) % 4];
+          el.setAttribute('href', `#${tipos[(row + col) % 4]}`);
+          el.setAttribute('x', col * 60);
+          el.setAttribute('y', row * 30);
+          g.appendChild(el);
+        }
+      }
+      g.addEventListener('click', (ev) => {
+        const tile = ev.target;
+        console.log(tile.dataset.row, tile.dataset.col, tile.dataset.tipo);
+      });
+    </script>
+  </body>
+</html>
