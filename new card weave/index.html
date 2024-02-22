@@ -5,44 +5,72 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <svg viewbox="0,0,600,510" width="50%">
-      <g class="templates">
-        <rect id="bkg" x="0" y="0" width="60" height="20" />
-        <path id="pointLeft" d="M 0,0   L 10,10 0,20" />
-        <path id="up" d="M 20,10 L 30,0 40,10 40,20 20,20 20,10" />
-        <path id="pointRight" d="M 60,0  L 50,10 60,20" />
-        <path id="buttLeft" d="M0,0   L 10,0 10,20 0,20" />
-        <path id="down" d="M 20,0  L 40,0 40,10 30,20 20,10 20,0" />
-        <path id="buttRight" d="M 60,0  L 50,0 50,20 60,20" />
-        <g id="EN">
-          <use href="#bkg" />
-          <use href="#pointLeft" />
-          <use href="#up" />
-          <use href="#pointRight" />
+    <div class="container">
+      <svg viewbox="0,0,600,510" height="100%">
+        <g class="templates">
+          <rect id="bkg" x="0" y="0" width="60" height="20" />
+          <path id="pointLeft" d="M 0,0   L 10,10 0,20" />
+          <path id="up" d="M 20,10 L 30,0 40,10 40,20 20,20 20,10" />
+          <path id="pointRight" d="M 60,0  L 50,10 60,20" />
+          <path id="buttLeft" d="M0,0   L 10,0 10,20 0,20" />
+          <path id="down" d="M 20,0  L 40,0 40,10 30,20 20,10 20,0" />
+          <path id="buttRight" d="M 60,0  L 50,0 50,20 60,20" />
+          <g id="EN">
+            <use href="#bkg" />
+            <use href="#pointLeft" />
+            <use href="#up" />
+            <use href="#pointRight" />
+          </g>
+          <g id="ON">
+            <use href="#bkg" />
+            <use href="#buttLeft" />
+            <use href="#up" />
+            <use href="#buttRight" />
+          </g>
+          <g id="EV">
+            <use href="#bkg" />
+            <use href="#pointLeft" />
+            <use href="#down" />
+            <use href="#pointRight" />
+          </g>
+          <g id="OV">
+            <use href="#bkg" />
+            <use href="#buttLeft" />
+            <use href="#up" />
+            <use href="#buttRight" />
+          </g>
         </g>
-        <g id="ON">
-          <use href="#bkg" />
-          <use href="#buttLeft" />
-          <use href="#up" />
-          <use href="#buttRight" />
+        <g id="letra" class="letra">
+          <circle cx="600" cy="510" r="10" />
         </g>
-        <g id="EV">
-          <use href="#bkg" />
-          <use href="#pointLeft" />
-          <use href="#down" />
-          <use href="#pointRight" />
-        </g>
-        <g id="OV">
-          <use href="#bkg" />
-          <use href="#buttLeft" />
-          <use href="#up" />
-          <use href="#buttRight" />
-        </g>
-      </g>
-      <g id="letra" class="letra">
-        <circle cx="600" cy="510" r="10" />
-      </g>
-    </svg>
+      </svg>
+      <div>
+        <fieldset>
+          <legend>Crear nuevo patrón</legend>
+          <table>
+            <tr>
+              <th>Filas</th>
+              <th>Columnas</th>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input type="number" id="rows" /></td>
+              <td><input type="number" id="cols" /></td>
+              <td><button id="new">Nuevo</button></td>
+            </tr>
+          </table>
+        </fieldset>
+        <fieldset>
+          <legend>Patrón actual</legend>
+          <input id="nombre" />
+          <button id="guardar" disabled>Guardar</button>
+        </fieldset>
+        <fieldset>
+          <legend>Patrones guardados</legend>
+          <ul id="patrones"></ul>
+        </fieldset>
+      </div>
+    </div>
     <script src="matriz.js"></script>
     <script src="index.js"></script>
   </body>

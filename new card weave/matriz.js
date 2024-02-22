@@ -1,14 +1,7 @@
 class Matriz {
   constructor(rows = 17, cols = 10) {
-    if (typeof rows === 'string') {
-      this.matriz = localStorage.getItem(rows);
-      if (!this.matriz) {
-        alert(`Letra ${rows} no existe en el almacen`);
-        this.matriz = [[]];
-      }
-    } else {
-      this.clear(rows, cols);
-    }
+    this.clear(rows, cols);
+    this.name = null;
   }
   clear(rows, cols) {
     this.matriz = Array(rows)
@@ -28,5 +21,17 @@ class Matriz {
     this.matriz.forEach((line, row) =>
       line.forEach((cell, col) => cb(cell, row, col))
     );
+  }
+  read(name) {
+    const m = localStorage.getItem(name);
+    if (m) {
+      this.name = name;
+      this.matriz = JSON.parse(m);
+    } else {
+      alert(`Letra "${name}" no existe en el almacen`);
+    }
+  }
+  save() {
+    localStorage.setItem(this.name, JSON.stringify(this.matriz));
   }
 }

@@ -19,3 +19,15 @@ path {
   fill: white;
   stroke: none;
 }
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+fieldset {
+  margin: 1em;
+}
+legend {
+  font-weight: bold;
+}
