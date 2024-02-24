@@ -5,7 +5,8 @@ class Matriz {
   constructor(rows, cols) {
     if (rows) this.clear(rows, cols);
     this._name = '';
-    this.status = STATUS.NUEVO;
+    this._status = STATUS.NUEVO;
+    this.notify();
   }
   clear(rows, cols) {
     this.matriz = Array(rows)
@@ -37,8 +38,7 @@ class Matriz {
   }
   set name(n) {
     if (this._name === n) return;
-    this._name = n;
-    Matriz.listeners.forEach((l) => l(this));
+    this.name = n;
   }
   get status() {
     return this._status;
@@ -46,6 +46,9 @@ class Matriz {
   set status(s) {
     if (this._status === s) return;
     this._status = s;
+    this.notify();
+  }
+  notify() {
     Matriz.listeners.forEach((l) => l(this));
   }
   static read(name) {
@@ -53,8 +56,9 @@ class Matriz {
     if (m) {
       const newMatriz = new Matriz();
       newMatriz.matriz = JSON.parse(m);
-      newMatriz.name = name;
-      newMatriz.status = STATUS.NORMAL;
+      newMatriz._name = name;
+      newMatriz._status = STATUS.NORMAL;
+      newMatriz.notify();
       return newMatriz;
     } else {
       alert(`Letra "${name}" no existe en el almacen`);
@@ -65,7 +69,8 @@ class Matriz {
       STORAGE_PREFIX + (newName ?? this.name),
       JSON.stringify(this.matriz)
     );
-    this.status = STATUS.NORMAL;
-    if (newName) this.name = newName;
+    this._status = STATUS.NORMAL;
+    if (newName) this._name = newName;
+    this.notify();
   }
 }
