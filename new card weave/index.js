@@ -8,6 +8,7 @@ const newBtn = document.getElementById('nuevo');
 const nameEl = document.getElementById('nombre');
 const saveBtn = document.getElementById('guardar');
 const saveAsBtn = document.getElementById('guardarComo');
+const deleteBtn = document.getElementById('borrar');
 const patronesUl = document.getElementById('patrones');
 
 let matriz = null;
@@ -87,14 +88,17 @@ Matriz.suscribe((m) => {
     case STATUS.NORMAL:
       saveBtn.disabled = true;
       saveAsBtn.disabled = false;
+      deleteBtn.disabled = false;
       break;
     case STATUS.CAMBIADO:
       saveBtn.disabled = !m.name;
       saveAsBtn.disabled = false;
+      deleteBtn.disabled = false;
       break;
     case STATUS.NUEVO:
       saveBtn.disabled = true;
       saveAsBtn.disabled = false;
+      deleteBtn.disabled = true;
       break;
     default:
       console.error('status desconocido', m.status);
@@ -114,6 +118,13 @@ saveAsBtn.addEventListener('click', () => {
   }
 });
 
+deleteBtn.addEventListener('click', () => {
+  if (window.confirm('¿Seguro que desea borrarlo?')) {
+    matriz.remove();
+    listPatrones();
+    letraPanel.innerHTML = '';
+  }
+});
 patronesUl.addEventListener('click', (ev) => {
   ev.preventDefault();
   saveBeforeSwitch();

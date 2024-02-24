@@ -73,4 +73,8 @@ class Matriz {
     if (newName) this._name = newName;
     this.notify();
   }
+  remove() {
+    localStorage.removeItem(STORAGE_PREFIX + this.name);
+    this.notify();
+  }
 }
