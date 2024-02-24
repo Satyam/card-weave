@@ -42,7 +42,6 @@ function listPatrones() {
   }
 }
 
-// redraw();
 listPatrones();
 
 letraPanel.addEventListener('click', (ev) => {
@@ -56,7 +55,18 @@ letraPanel.addEventListener('click', (ev) => {
   );
 });
 
+function saveBeforeSwitch() {
+  if (matriz && matriz.status === STATUS.CAMBIADO) {
+    if (
+      window.confirm(`El patrón actual ${matriz.name} no ha sido salvado
+    ¿Desea salvarlo antes de cargar uno nuevo?`)
+    ) {
+      matriz.save();
+    }
+  }
+}
 newBtn.addEventListener('click', () => {
+  saveBeforeSwitch();
   const rows = Number(rowsEl.value) || 17;
   const cols = Number(colsEl.value) || 10;
   svgEl.setAttribute('viewBox', `0,0,${cols * 60},${rows * 30}`);
@@ -106,6 +116,7 @@ saveAsBtn.addEventListener('click', () => {
 
 patronesUl.addEventListener('click', (ev) => {
   ev.preventDefault();
+  saveBeforeSwitch();
   matriz = Matriz.read(ev.target.getAttribute('href'));
   if (matriz) redraw();
 });
