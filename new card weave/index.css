@@ -16,6 +16,9 @@ path {
   fill: white;
   stroke: none;
 }
+#letra use:hover {
+  filter: saturate(10%);
+}
 .container {
   display: grid;
   grid-template-columns: 2fr 1fr;
